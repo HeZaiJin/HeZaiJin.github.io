@@ -1,37 +1,16 @@
-title: Hello World
+title: First Test
 ---
-Reset and Test ! [Hexo](http://hexo.io/)! This is your very first post. Check [documentation](http://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](http://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+窗前明月光，疑是地上霜。举头望明月，低头思故乡。
+### 作者
+---
+李白![file-list](http://img.hoop8.com/attachments/1512/3891961350373.png)
 
-## Quick Start
-
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
+### 生平
+---
+一个活在自我构建的理想社会的狂妄之人。
+### JAVA
+---
+```java 
+String personal = "李白";
 ```
-
-More info: [Writing](http://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](http://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](http://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](http://hexo.io/docs/deployment.html)
+HeZaiJin: [Github Pages](http://hezaijin.github.io)
