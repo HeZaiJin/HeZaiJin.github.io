@@ -4,12 +4,16 @@
 
 # Site
 title: HeZaiJin
-subtitle: There is nothing !
-description:
+subtitle:
+description: 今何在
 author: HeZaiJin
-language:
+language: zh-Hans
 timezone:
-
+avatar:  /images/avatar.jpg
+duoshuo_shortname: hezaijin
+# Social links
+social:
+  github: https://github.com/HeZaiJin
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
@@ -63,7 +67,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
