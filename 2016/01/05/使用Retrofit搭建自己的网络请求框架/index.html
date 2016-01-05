@@ -36,7 +36,7 @@
 
 
 
-  <meta name="keywords" content="HeZaiJin" />
+  <meta name="keywords" content="retrofit," />
 
 
 
@@ -45,15 +45,21 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="今何在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HeZaiJin">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本文是利用Android Studio，基于Retrofit2.0.0-beta2来搭建的网络请求框架。
+准备工作首先，构建一个Gradle Project。然后，我们添加搭建Retrofit需要的一些类库：1234compile &apos;com.google.code.gson:gson:2.3&apos;compile &apos;com.squareup.retrofit:retrofit:2.0.0-beta2&apos;c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Retrofit搭建自己的网络请求框架">
+<meta property="og:url" content="http://yoursite.com/2016/01/05/使用Retrofit搭建自己的网络请求框架/index.html">
 <meta property="og:site_name" content="HeZaiJin">
-<meta property="og:description" content="今何在">
+<meta property="og:description" content="本文是利用Android Studio，基于Retrofit2.0.0-beta2来搭建的网络请求框架。
+准备工作首先，构建一个Gradle Project。然后，我们添加搭建Retrofit需要的一些类库：1234compile &apos;com.google.code.gson:gson:2.3&apos;compile &apos;com.squareup.retrofit:retrofit:2.0.0-beta2&apos;c">
+<meta property="og:image" content="http://img.hoop8.com/attachments/1601/5391961350373.png">
+<meta property="og:image" content="http://img.hoop8.com/attachments/1601/1681961350373.png">
+<meta property="og:updated_time" content="2016-01-05T06:38:30.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HeZaiJin">
-<meta name="twitter:description" content="今何在">
+<meta name="twitter:title" content="使用Retrofit搭建自己的网络请求框架">
+<meta name="twitter:description" content="本文是利用Android Studio，基于Retrofit2.0.0-beta2来搭建的网络请求框架。
+准备工作首先，构建一个Gradle Project。然后，我们添加搭建Retrofit需要的一些类库：1234compile &apos;com.google.code.gson:gson:2.3&apos;compile &apos;com.squareup.retrofit:retrofit:2.0.0-beta2&apos;c">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -65,7 +71,7 @@
 
 
 
-  <title> HeZaiJin </title>
+  <title> 使用Retrofit搭建自己的网络请求框架 | HeZaiJin </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -86,9 +92,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -174,9 +178,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -192,9 +196,7 @@
             
             
               
-                <a class="post-title-link" href="/2016/01/05/使用Retrofit搭建自己的网络请求框架/" itemprop="url">
-                  使用Retrofit搭建自己的网络请求框架
-                </a>
+                使用Retrofit搭建自己的网络请求框架
               
             
           </h1>
@@ -234,10 +236,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>本文是利用<strong>Android Studio</strong>，基于Retrofit2.0.0-beta2来搭建的网络请求框架。</p>
+        <span itemprop="articleBody"><p>本文是利用<strong>Android Studio</strong>，基于Retrofit2.0.0-beta2来搭建的网络请求框架。</p>
 <h2 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先，构建一个Gradle Project。然后，我们添加搭建<strong>Retrofit</strong>需要的一些类库：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'com.google.code.gson:gson:2.3'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.retrofit:retrofit:2.0.0-beta2'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.retrofit:converter-gson:2.0.0-beta2'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.okhttp:okhttp:2.4.0'</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="u5F00_u59CB_u642D_u5EFA"><a href="#u5F00_u59CB_u642D_u5EFA" class="headerlink" title="开始搭建"></a>开始搭建</h2><p>构建package列表，目录结构如下：<br><img src="http://img.hoop8.com/attachments/1601/5391961350373.png" alt="package"></p>
 <blockquote>
@@ -277,221 +276,59 @@
 <p>全文到此结束，鉴于自己刚摸索Retrofit没几天，本着不要误人子弟的思想，大家还是多多挑毛病，提意见的好。</p>
 <p>源码请见：<a href="https://github.com/HeZaiJin/RetrofitDemo" target="_blank" rel="external">RetrofitDemo</a></p>
 <hr>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2016/01/05/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T13:35:04+08:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/retrofit/" rel="tag">#retrofit</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/05/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+              <a href="/2016/01/05/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-          </span>
-        
-      
-    </div>
+          </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                <a class="post-title-link" href="/2016/01/02/利用Github-pages创建个人博客/" itemprop="url">
-                  利用Github pages创建个人博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-02T21:29:46+08:00" content="2016-01-02">
-              2016-01-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/02/利用Github-pages创建个人博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/02/利用Github-pages创建个人博客/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p><strong>Github</strong> 为每位用户提供了私人200M空间的<strong><em><a href="https://pages.github.com" target="_blank" rel="external">Github pages</a></em></strong>。而我们可以利用它来创建自己的私人博客。</p>
-<h2 id="Step_1_3A"><a href="#Step_1_3A" class="headerlink" title="Step 1:"></a>Step 1:</h2><p>创建一个特殊的repository .<br>例如，我的github用户名是HeZaijin , 那么对应的要创建一个HeZaiJin.github.io的repository .</p>
-<h2 id="Step_2_3A"><a href="#Step_2_3A" class="headerlink" title="Step 2:"></a>Step 2:</h2><p>安装软件:Git  node.js 等。<br>安装软件不必赘述。请自行Google .</p>
-<h2 id="Step_3_3A"><a href="#Step_3_3A" class="headerlink" title="Step 3:"></a>Step 3:</h2><p>install hexo 工具。Hexo是一个博客管理工具，利用它，可以轻松的设计出一个漂亮的博客。<br>Git shell （Git for windows软件，推荐使用，漂亮的交互，省心的命令窗口）。<br>输入以下命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-cli -<span class="keyword">g</span></span><br><span class="line">npm <span class="keyword">install</span> hexo <span class="comment">--save</span></span><br><span class="line"></span><br><span class="line">#如果提示proxy有问题，可以输入以下命令</span><br><span class="line">npm <span class="keyword">install</span> -<span class="keyword">g</span> cnpm <span class="comment">--registry=https://registry.npm.taobao.org</span></span></span><br></pre></td></tr></table></figure></p>
-<p>安装hexo 后，接下来就是搭建hexo 和管理repository了。</p>
-<h2 id="Step_4_3A"><a href="#Step_4_3A" class="headerlink" title="Step 4:"></a>Step 4:</h2><p>clone HeZaiJin.github.io仓库到一个指定的文件夹<github><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="tag">&lt;<span class="title">Github</span>&gt;</span></span><br><span class="line">cd <span class="tag">&lt;<span class="title">Github</span>&gt;</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></github></p>
-<p>搭建完成。注意，最好现在checkout一个code分支，用于管理配置文件和资源文件。master分支用于保留后面生成的public文件夹下的所有文件 。</p>
-<h2 id="Step_5_3A"><a href="#Step_5_3A" class="headerlink" title="Step 5:"></a>Step 5:</h2><p>如何配置和创建自己的blog，请自行研究：<strong><em><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo文档</a></em></strong>，<strong><em><a href="http://wsgzao.github.io/post/markdown/" target="_blank" rel="external">学习使用Markdown</a></em></strong>.现在我们切到code分支，简单的编辑一下_config.yml 文件：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># Site</span></span><br><span class="line"><span class="label">title:</span> HeZaiJin</span><br><span class="line"><span class="label">subtitle:</span></span><br><span class="line"><span class="label">description:</span> 今何在</span><br><span class="line"><span class="label">author:</span> HeZaiJin</span><br></pre></td></tr></table></figure></p>
-<p>然后保存，在命令行下输入<strong>hexo s</strong>:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> s</span><br></pre></td></tr></table></figure></p>
-<p>创建本地静态网页，运行后可以访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 去查看刚刚修改的效果</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> g</span><br></pre></td></tr></table></figure>
-<p>创建public文件夹,把public 生成的文件（它的子文件）推送到master分支，然后输入网址<a href="http://HeZaiJin.github.io" target="_blank" rel="external">http://HeZaiJin.github.io</a> 就可以查看自己的博客了。</p>
-<hr>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
  </div>
 
         
 
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/05/使用Retrofit搭建自己的网络请求框架/"
+                   data-title="使用Retrofit搭建自己的网络请求框架" data-url="http://yoursite.com/2016/01/05/使用Retrofit搭建自己的网络请求框架/">
+              </div>
+            
+          </div>
         
       </div>
 
@@ -512,8 +349,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/images/avatar.jpg" alt="HeZaiJin" itemprop="image"/>
           <p class="site-author-name" itemprop="name">HeZaiJin</p>
@@ -566,6 +412,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u51C6_u5907_u5DE5_u4F5C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F00_u59CB_u642D_u5EFA"><span class="nav-number">2.</span> <span class="nav-text">开始搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step_1__u521B_u5EFAApiServices"><span class="nav-number">2.1.</span> <span class="nav-text">Step 1 创建ApiServices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step_2__u521B_u5EFA_u9700_u8981_u7684model_u5BF9_u8C61"><span class="nav-number">2.2.</span> <span class="nav-text">Step 2 创建需要的model对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step_3__u521B_u5EFARESTParamsBuilder-java"><span class="nav-number">2.3.</span> <span class="nav-text">Step 3 创建RESTParamsBuilder.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step_4__u521B_u5EFA_u7F51_u7EDC_u59D4_u6258_u7C7B"><span class="nav-number">2.4.</span> <span class="nav-text">Step 4 创建网络委托类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B9E_u73B0_u4EE3_u7801"><span class="nav-number">2.5.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
       
 
     </div>
@@ -653,6 +510,165 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
