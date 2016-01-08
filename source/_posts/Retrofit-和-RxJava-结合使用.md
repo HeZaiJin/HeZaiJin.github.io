@@ -1,8 +1,13 @@
 title: Retrofit 和 RxJava 结合使用
 date: 2016-01-08 15:37:07
+categories: android
+description: 既然使用了Retrofit,那么不去使用一下它的RxJava总觉得心有不甘。Ok,既然有了目标，那么就要去实现它!
 tags: 
  - retrofit
- - rxja
+ - rxjava
+
+# Retrofit 和 RxJava 结合使用
+
 ---
 既然使用了**Retrofit** ,那么不去使用一下它的**RxJava**总觉得心有不甘。Ok,既然有了目标，那么就要去实现它！
 

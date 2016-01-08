@@ -1,5 +1,7 @@
 title: 利用Github pages创建个人博客
 date: 2016-01-02 21:29:46
+categories: note
+description: Github为每位用户提供了私人200M空间的Github pages。而我们可以利用它来创建自己的私人博客。
 tags: note
 # 利用Github pages创建个人博客
 

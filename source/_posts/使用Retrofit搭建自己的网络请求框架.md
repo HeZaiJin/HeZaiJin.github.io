@@ -1,5 +1,7 @@
 title: 使用Retrofit搭建自己的网络请求框架
 date: 2016-01-05 13:37:33
+categories: android 
+description: 文是利用Android Studio，基于Retrofit2.0.0-beta2来搭建的网络请求框架。
 tags: retrofit
 
 # 使用Retrofit搭建自己的网络请求框架
