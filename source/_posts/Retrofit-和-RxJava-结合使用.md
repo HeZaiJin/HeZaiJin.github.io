@@ -78,5 +78,6 @@ RESTClient.queryListEvent(params)
 ```
 
 对结构框架不太清楚的请看[利用Retrofit创建自己的网络框架](http://hezaijin.github.io/2016/01/05/%E4%BD%BF%E7%94%A8Retrofit%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%A1%86%E6%9E%B6/)
-全文结束，跟多衍生的还是需要深入的研究RxJava和Retrofit。
+全文结束，跟多衍生的还是需要深入的研究**RxJava**和**Retrofit**。
+
 ---
