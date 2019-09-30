@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016/1 | HeZaiJin</title>
+  <title>Hikey970编译烧录Android P | HeZaiJin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="张浩 HeZaiJin">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HeZaiJin">
-<meta property="og:url" content="http://yoursite.com/archives/2016/01/index.html">
+  <meta name="description" content="hikey970编译烧录Android AOSP P">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hikey970编译烧录Android P">
+<meta property="og:url" content="http://yoursite.com/2019/09/30/hikey970编译烧录Android-P/index.html">
 <meta property="og:site_name" content="HeZaiJin">
-<meta property="og:description" content="张浩 HeZaiJin">
+<meta property="og:description" content="hikey970编译烧录Android AOSP P">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-30T07:18:09.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HeZaiJin">
-<meta name="twitter:description" content="张浩 HeZaiJin">
+<meta name="twitter:title" content="Hikey970编译烧录Android P">
+<meta name="twitter:description" content="hikey970编译烧录Android AOSP P">
   
     <link rel="alternative" href="/atom.xml" title="HeZaiJin" type="application/atom+xml">
   
@@ -137,52 +139,99 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hikey970编译烧录Android-P" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/08/Retrofit-和-RxJava-结合使用/" class="archive-article-date">
-  	<time datetime="2016-01-08T07:37:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/08/Retrofit-和-RxJava-结合使用/">Retrofit 和 RxJava 结合使用</a>
+    <h1 class="article-title" itemprop="name">
+      Hikey970编译烧录Android P
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/30/hikey970编译烧录Android-P/" class="archive-article-date">
+  	<time datetime="2019-09-30T07:12:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="获取aosp"><a href="#获取aosp" class="headerlink" title="获取aosp"></a>获取aosp</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ repo init -u https:<span class="comment">//aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-9.0.0_r8 --no-repo-verify --repo-branch=stable</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/android-manifest.git -b hikey970_v1.0 .repo/local_manifests</span></span><br><span class="line">$ repo sync</span><br><span class="line">$ source ./build/envsetup.sh</span><br><span class="line">$ lunch hikey970-userdebug</span><br></pre></td></tr></table></figure>
+
+<h2 id="完整编译"><a href="#完整编译" class="headerlink" title="完整编译"></a>完整编译</h2><h3 id="编译kernel"><a href="#编译kernel" class="headerlink" title="编译kernel"></a>编译kernel</h3><p>下载kernel库</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment">//env setup</span></span><br><span class="line">$ sudo apt-get install uuid-dev build-essential</span><br><span class="line">$ mkdir bootloader </span><br><span class="line">$ cd bootloader</span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/tools-images-hikey970.git</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/OpenPlatformPkg.git -b hikey970_v1.0</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/arm-trusted-firmware.git -b hikey970_v1.0</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/l-loader.git -b hikey970_v1.0</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/edk2.git -b hikey970_v1.0</span></span><br><span class="line">$ git clone https:<span class="comment">//github.com/96boards-hikey/uefi-tools.git -b hikey970_v1.0</span></span><br><span class="line">$</span><br><span class="line">$ cd edk2</span><br><span class="line">$ ln -sf ../OpenPlatformPkg</span><br></pre></td></tr></table></figure>
+
+<p>*<em>setup bootlader cross compile *</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim ../bootloader/l-loader/build_uefi.sh</span><br><span class="line"></span><br><span class="line">$:~/workspace/audi-aosp/bootloader/l-loader$ git diff build_uefi.sh</span><br><span class="line">diff --git a/build_uefi.sh b/build_uefi.sh</span><br><span class="line">index <span class="number">3449246</span>..e7e957d <span class="number">100755</span></span><br><span class="line">--- a/build_uefi.sh</span><br><span class="line">+++ b/build_uefi.sh</span><br><span class="line">@@ -<span class="number">43</span>,<span class="number">7</span> +<span class="number">43</span>,<span class="number">8</span> @@ <span class="keyword">case</span> <span class="string">"$&#123;SELECT_GCC&#125;"</span> in</span><br><span class="line">        CROSS_COMPILE=aarch64-linux-gnu-</span><br><span class="line">        ;;</span><br><span class="line"> <span class="string">"LINARO_GCC_7_1"</span>)</span><br><span class="line">-       AARCH64_GCC_7_1=/opt/toolchain/gcc-linaro-<span class="number">7.1</span>.1-<span class="number">2017.08</span>-x86_64_aarch64-linux-gnu/bin/</span><br><span class="line">+       # AARCH64_GCC_7_1=/opt/toolchain/gcc-linaro-7.1.1-2017.08-x86_64_aarch64-linux-gnu/bin/</span><br><span class="line">+        AARCH64_GCC_7_1=/home/hand/workspace/aosp/bootloader/gcc-linaro-<span class="number">7.1</span>.1-<span class="number">2017.08</span>-x86_64_aarch64-linux-gnu/bin/</span><br><span class="line">        PATH=$&#123;AARCH64_GCC_7_1&#125;:$&#123;PATH&#125; &amp;&amp; export PATH</span><br><span class="line">        export AARCH64_TOOLCHAIN=GCC5</span><br><span class="line">        CROSS_COMPILE=aarch64-linux-gnu-</span><br></pre></td></tr></table></figure>
+
+<p>编译bootloader, 生成物:</p>
+<pre><code>- l-loader/ptable-aosp-64g.img
+- tools-images-hikey970/sec_xloader.img
+- l-loader/l-loader.bin
+- l-loader/fip.bin</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ ./l-loader/build_uefi.sh hikey970</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="编译dtb"><a href="#编译dtb" class="headerlink" title="编译dtb"></a>编译dtb</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ cd aosp/kernel/hikey-linaro/</span><br><span class="line">$ <span class="comment">//此处需要配置正确的gcc path</span></span><br><span class="line">$ export ARCH=arm64 &amp;&amp; export CROSS_COMPILE=/home/hand/workspace/aosp/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-<span class="number">4.9</span>/bin/aarch64-linux-android-</span><br><span class="line">$ make hikey970_defconfig</span><br><span class="line">$ make -j4</span><br><span class="line">$ make hisilicon/kirin970-hikey970.dtb</span><br><span class="line">$ cp -a arch/arm64/boot/Image .</span><br><span class="line">$ cp -a arch/arm64/boot/dts/hisilicon/kirin970-hikey970.dtb .</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 编译aosp</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">$ make -j24 <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee build.log</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译boot-img"><a href="#编译boot-img" class="headerlink" title="编译boot.img"></a>编译boot.img</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat kernel/hikey-linaro/Image kernel/hikey-linaro/kirin970-hikey970.dtb &gt; Image-dtb</span><br><span class="line">$ mkbootimg --kernel Image-dtb --ramdisk out/target/product/hikey970/ramdisk.img --cmdline <span class="string">"androidboot.hardware=hikey970 firmware_class.path=/system/etc/firmware loglevel=15 buildvariant=userdebug androidboot.selinux=permissive clk_ignore_unused=true initrd=0xBE19D000,0x16677F earlycon=pl011,0xfff32000,115200 console=tty AMA6 androidboot.serialno=54DA9CD5022525E4 clk_ignore_unused=true video=HDMI-A-1:1280x720@60"</span> -o boot.img</span><br></pre></td></tr></table></figure>
+
+<h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ fastboot flash ptable l-loader/ptable-aosp-<span class="number">64</span>g.img</span><br><span class="line">$ fastboot flash xloader tools-images-hikey970/sec_xloader.img</span><br><span class="line">$ fastboot flash fastboot l-loader/l-loader.bin</span><br><span class="line">$ fastboot flash fip l-loader/fip.bin</span><br><span class="line">$ fastboot flash boot boot.img</span><br><span class="line">$ fastboot flash cache cache.img</span><br><span class="line">$ fastboot flash system system.img</span><br><span class="line">$ fastboot flash userdata userdata.img</span><br></pre></td></tr></table></figure>
+
+<h2 id="编译中遇到的问题"><a href="#编译中遇到的问题" class="headerlink" title="编译中遇到的问题"></a>编译中遇到的问题</h2><p><strong>1、device/linaro/hikey/sepolicy/hostapd.te:4:ERROR ‘unknown type hostapd’</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ <span class="number">4</span> warnings generated.</span><br><span class="line">$ [ <span class="number">51</span>% <span class="number">5168</span>/<span class="number">10017</span>] build out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/sepolicy_neverallows</span><br><span class="line">FAILED: out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/sepolicy_neverallows </span><br><span class="line">/bin/bash -c <span class="string">"(rm -f out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/sepolicy_neverallows ) &amp;&amp; (ASAN_OPTIONS=detect_leaks=0 out/host/linux-x86/bin/checkpolicy -M -c 		</span></span><br><span class="line"><span class="string">30 -o out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/sepolicy_neverallows out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/policy.conf )"</span></span><br><span class="line">device/linaro/hikey/sepolicy/hostapd.te:<span class="number">4</span>:ERROR <span class="string">'unknown type hostapd'</span> at token <span class="string">';'</span> on line <span class="number">41751</span>:</span><br><span class="line">hostapd no longer directly accesses /data outside /data/vendor.</span><br><span class="line">typeattribute hostapd data_between_core_and_vendor_violators;</span><br><span class="line">checkpolicy:  error(s) encountered <span class="keyword">while</span> parsing configuration</span><br><span class="line">out/host/linux-x86/bin/checkpolicy:  loading policy configuration from out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/policy.conf</span><br><span class="line">$ [ <span class="number">51</span>% <span class="number">5169</span>/<span class="number">10017</span>] build out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/reqd_policy_mask.cil</span><br><span class="line">out/host/linux-x86/bin/checkpolicy:  loading policy configuration from out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/reqd_policy_mask.conf</span><br><span class="line">out/host/linux-x86/bin/checkpolicy:  policy configuration loaded</span><br><span class="line">out/host/linux-x86/bin/checkpolicy:  writing CIL to out/target/product/hikey970/obj/ETC/sepolicy_neverallows_intermediates/reqd_policy_mask.cil</span><br><span class="line">$ [ <span class="number">51</span>% <span class="number">5183</span>/<span class="number">10017</span>] <span class="comment">//external/boringssl:libssl clang++ src/ssl/ssl_x509.cc [linux_glibc]</span></span><br><span class="line">$ ninja: build stopped: subcommand failed.</span><br><span class="line">$ <span class="number">17</span>:<span class="number">57</span>:<span class="number">08</span> ninja failed with: exit status <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方案:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$:~/workspace/aosp/device/linaro/hikey$ git diff</span><br><span class="line">diff --git a/manifest.xml b/manifest.xml</span><br><span class="line">index fb88f0d..e15f51b <span class="number">100644</span></span><br><span class="line">--- a/manifest.xml</span><br><span class="line">+++ b/manifest.xml</span><br><span class="line">@@ -<span class="number">62</span>,<span class="number">4</span> +<span class="number">62</span>,<span class="number">13</span> @@</span><br><span class="line">             &lt;instance&gt;default&lt;/instance&gt;</span><br><span class="line">         &lt;/interface&gt;</span><br><span class="line">     &lt;/hal&gt;</span><br><span class="line">+    &lt;hal format=<span class="string">"hidl"</span>&gt;</span><br><span class="line">+        &lt;name&gt;android.hardware.wifi.hostapd&lt;/name&gt;</span><br><span class="line">+        &lt;transport&gt;hwbinder&lt;/transport&gt;</span><br><span class="line">+        &lt;version&gt;1.0&lt;/version&gt;</span><br><span class="line">+        &lt;<span class="class"><span class="keyword">interface</span>&gt;</span></span><br><span class="line"><span class="class">+            &lt;<span class="title">name</span>&gt;<span class="title">IHostapd</span>&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">+            &lt;<span class="title">instance</span>&gt;<span class="title">default</span>&lt;/<span class="title">instance</span>&gt;</span></span><br><span class="line"><span class="class">+        &lt;/<span class="title">interface</span>&gt;</span></span><br><span class="line"><span class="class">+    &lt;/<span class="title">hal</span>&gt;</span></span><br><span class="line"><span class="class"> &lt;/<span class="title">manifest</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">diff</span> --<span class="title">git</span> <span class="title">a</span>/<span class="title">sepolicy</span>/<span class="title">hostapd</span>.<span class="title">te</span> <span class="title">b</span>/<span class="title">sepolicy</span>/<span class="title">hostapd</span>.<span class="title">te</span></span></span><br><span class="line"><span class="class"><span class="title">index</span> 86<span class="title">b985a</span>..78<span class="title">b135c</span> 100644</span></span><br><span class="line"><span class="class">--- <span class="title">a</span>/<span class="title">sepolicy</span>/<span class="title">hostapd</span>.<span class="title">te</span></span></span><br><span class="line"><span class="class">+++ <span class="title">b</span>/<span class="title">sepolicy</span>/<span class="title">hostapd</span>.<span class="title">te</span></span></span><br><span class="line"><span class="class">@@ -1,11 +1,11 @@</span></span><br><span class="line"> # TODO(b/36657258): Remove data_between_core_and_vendor_violators once</span><br><span class="line"> # hostapd no longer directly accesses /data outside /data/vendor.</span><br><span class="line">-typeattribute hostapd data_between_core_and_vendor_violators;</span><br><span class="line">+#typeattribute hostapd data_between_core_and_vendor_violators;</span><br><span class="line"> # hostapd can read and write WiFi related data and configuration.</span><br><span class="line">-allow hostapd wifi_data_file:file rw_file_perms;</span><br><span class="line">-r_dir_file(hostapd, wifi_data_file)</span><br><span class="line">+#allow hostapd wifi_data_file:file rw_file_perms;</span><br><span class="line">+#r_dir_file(hostapd, wifi_data_file)</span><br><span class="line"> </span><br><span class="line"> # hostapd wants to create the directory holding its control socket.</span><br><span class="line">-allow hostapd hostapd_socket:dir create_dir_perms;</span><br><span class="line">+#allow hostapd hostapd_socket:dir create_dir_perms;</span><br><span class="line"> # hostapd needs to create, bind to, read, and write its control socket.</span><br><span class="line">-allow hostapd hostapd_socket:sock_file create_file_perms;</span><br><span class="line">+#allow hostapd hostapd_socket:sock_file create_file_perms;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">retrofit</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rxjava</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -195,115 +244,86 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/05/使用Retrofit搭建自己的网络请求框架/" class="archive-article-date">
-  	<time datetime="2016-01-05T05:37:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/08/Retrofit-和-RxJava-结合使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Retrofit 和 RxJava 结合使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/05/使用Retrofit搭建自己的网络请求框架/">使用Retrofit搭建自己的网络请求框架</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">retrofit</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/android//" class="article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取aosp"><span class="toc-number">1.</span> <span class="toc-text">获取aosp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整编译"><span class="toc-number">2.</span> <span class="toc-text">完整编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#编译kernel"><span class="toc-number">2.1.</span> <span class="toc-text">编译kernel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译dtb"><span class="toc-number">2.2.</span> <span class="toc-text">编译dtb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译boot-img"><span class="toc-number">2.3.</span> <span class="toc-text">编译boot.img</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#烧录"><span class="toc-number">3.</span> <span class="toc-text">烧录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译中遇到的问题"><span class="toc-number">4.</span> <span class="toc-text">编译中遇到的问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/02/利用Github-pages创建个人博客/" class="archive-article-date">
-  	<time datetime="2016-01-02T13:29:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/02/利用Github-pages创建个人博客/">利用Github pages创建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">note</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/note//" class="article-tag-list-link color5">note</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="hikey970编译烧录Android-P" data-title="Hikey970编译烧录Android P" data-url="http://yoursite.com/2019/09/30/hikey970编译烧录Android-P/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -326,8 +346,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
